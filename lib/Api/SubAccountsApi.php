@@ -650,13 +650,13 @@ class SubAccountsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\ElasticEmail\Model\SubAccountInfo', []),
+                        ObjectSerializer::deserialize($content, '\ElasticEmail\Model\SubAccountInfo[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\ElasticEmail\Model\SubAccountInfo';
+            $returnType = '\ElasticEmail\Model\SubAccountInfo[]';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -675,7 +675,7 @@ class SubAccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\ElasticEmail\Model\SubAccountInfo',
+                        '\ElasticEmail\Model\SubAccountInfo[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
